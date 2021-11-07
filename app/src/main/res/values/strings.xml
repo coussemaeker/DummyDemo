@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">DummyDemo</string>
+
+    <string name="user_fullname_format">%1$s %2$s &lt;b&gt;%3$s&lt;/b&gt;</string>
+    <string name="user_location_format">%1$s\n%2$s, %3$s\n%4$s</string>
+    <string name="button_load_page">Load</string>
+
+    <string name="label_fullname">Name</string>
+    <string name="label_gender">Gender</string>
+    <string name="label_email">Email</string>
+    <string name="label_birthdate">Birth date</string>
+    <string name="label_register_date">Registered</string>
+    <string name="label_phone">Phone</string>
+    <string name="label_location">Location</string>
+</resources>
