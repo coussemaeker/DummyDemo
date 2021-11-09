@@ -103,4 +103,10 @@ class FileCache(val context : Context, val gson: Gson) {
         }.start()
     }
 
+    fun purge() {
+        for (child: File in cacheDirectory.listFiles()) {
+            child.delete()
+        }
+    }
+
 }

@@ -28,12 +28,14 @@
             <TableRow>
 
                 <TextView
+                    android:layout_gravity="center_vertical"
                     android:padding="5dp"
                     android:text="@string/label_fullname"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
                 <TextView
                     android:id="@+id/fullnameText"
+                    android:layout_gravity="center_vertical"
                     android:padding="5dp"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
             </TableRow>
@@ -41,12 +43,14 @@
             <TableRow>
 
                 <TextView
+                    android:layout_gravity="center_vertical"
                     android:padding="5dp"
                     android:text="@string/label_gender"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
                 <TextView
                     android:id="@+id/genderText"
+                    android:layout_gravity="center_vertical"
                     android:padding="5dp"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
             </TableRow>
@@ -54,12 +58,14 @@
             <TableRow>
 
                 <TextView
+                    android:layout_gravity="center_vertical"
                     android:padding="5dp"
                     android:text="@string/label_email"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
                 <TextView
                     android:id="@+id/emailText"
+                    android:layout_gravity="center_vertical"
                     android:padding="5dp"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
             </TableRow>
@@ -67,12 +73,14 @@
             <TableRow>
 
                 <TextView
+                    android:layout_gravity="center_vertical"
                     android:padding="5dp"
                     android:text="@string/label_birthdate"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
                 <TextView
                     android:id="@+id/birthdateText"
+                    android:layout_gravity="center_vertical"
                     android:padding="5dp"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
             </TableRow>
@@ -80,12 +88,14 @@
             <TableRow>
 
                 <TextView
+                    android:layout_gravity="center_vertical"
                     android:padding="5dp"
                     android:text="@string/label_register_date"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
                 <TextView
                     android:id="@+id/registerDateText"
+                    android:layout_gravity="center_vertical"
                     android:padding="5dp"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
             </TableRow>
@@ -93,12 +103,14 @@
             <TableRow>
 
                 <TextView
+                    android:layout_gravity="center_vertical"
                     android:padding="5dp"
                     android:text="@string/label_phone"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
                 <TextView
                     android:id="@+id/phoneText"
+                    android:layout_gravity="center_vertical"
                     android:padding="5dp"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
             </TableRow>
@@ -106,12 +118,14 @@
             <TableRow>
 
                 <TextView
+                    android:layout_gravity="center_vertical"
                     android:padding="5dp"
                     android:text="@string/label_location"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
                 <TextView
                     android:id="@+id/locationText"
+                    android:layout_gravity="center_vertical"
                     android:padding="5dp"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
             </TableRow>
