@@ -8,11 +8,9 @@ import com.ddrcss.android.dummydemo.model.UserLocation
 import com.ddrcss.android.dummydemo.model.UserPreview
 import com.ddrcss.android.dummydemo.model.UsersPage
 import com.ddrcss.android.dummydemo.util.GlobalFactory
-
+import org.junit.Assert.*
 import org.junit.Test
 import org.junit.runner.RunWith
-
-import org.junit.Assert.*
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import java.util.*
@@ -32,12 +30,14 @@ class DummyIoTest {
         ).execute().body()!!
         logger.trace(response.toString())
         assertTrue(response.pageIndex == 0)
+        assertTrue(response.userPreviews.size <= response.limit)
     }
 
-    // @Test
+    @Test
     fun getUserFullInfo() {
         val userList: UsersPage =
-            GlobalFactory.dummyIoService.getUserList(Constant.DEFAULT_APP_ID).execute().body()!!
+            GlobalFactory.dummyIoService.getUserList(Constant.DEFAULT_APP_ID, 0, 5).execute()
+                .body()!!
 
         for (preview in userList.userPreviews) {
             val userFullInfo =
@@ -97,16 +97,34 @@ class DummyIoTest {
         val outPage = randomUsersPage()
         val cache = GlobalFactory.cache
         val thread = HandlerThread("thread").also { it.start() }
+        var handler = Handler(thread.looper)
         cache.purge()
-        cache.saveUsersPage(outPage, Handler(thread.looper)) {
-            val inPage =
-                cache.loadUsersPage(outPage.limit, outPage.pageIndex, Handler(thread.looper), {
-                    assertEquals(outPage, it)
-                    thread.quit()
-                }, {
-                    thread.quit()
-                    throw it
-                })
+        cache.saveUsersPage(outPage, handler) {
+            cache.loadUsersPage(outPage.limit, outPage.pageIndex, handler, {
+                assertEquals(outPage, it)
+                thread.quit()
+            }, {
+                thread.quit()
+                throw it
+            })
+        }
+    }
+
+    @Test
+    fun purgeCache() {
+        val outPage = randomUsersPage()
+        val cache = GlobalFactory.cache
+        val thread = HandlerThread("thread").also { it.start() }
+        var handler = Handler(thread.looper)
+        cache.saveUsersPage(outPage, handler) {
+            cache.purge()
+            cache.loadUsersPage(outPage.limit, outPage.pageIndex, handler, {
+                thread.quit()
+                throw IllegalStateException()
+            }, {
+                thread.quit()
+                assertTrue(it is NoSuchElementException)
+            })
         }
     }
 
@@ -129,7 +147,7 @@ class DummyIoTest {
         val thread = HandlerThread("thread").also { it.start() }
         cache.purge()
         cache.saveUserFullInfo(outFullInfo, Handler(thread.looper)) {
-            val inFullInfo = cache.loadUserFullInfo(outFullInfo.id, Handler(thread.looper), {
+            cache.loadUserFullInfo(outFullInfo.id, Handler(thread.looper), {
                 assertEquals(outFullInfo, it)
                 thread.quit()
             }, {
